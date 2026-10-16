@@ -1,0 +1,15 @@
+// Cloudflare Workers (statik dosya) yapılandırması — deploy: npx wrangler deploy
+// Deploy öncesi build otomatik çalışır (src/ → dist/).
+{
+  "name": "murver-salon",
+  "compatibility_date": "2026-10-01",
+  "build": { "command": "node build.mjs" },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "routes": [{ "pattern": "salon.egementuncer.dev", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false
+}

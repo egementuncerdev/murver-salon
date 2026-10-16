@@ -1,0 +1,14 @@
+{
+  "name": "murver-salon",
+  "private": true,
+  "type": "module",
+  "description": "Mürver Güzellik Atölyesi — kurgusal güzellik salonu için çok sayfalı, iki dilli demo site",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && cd dist && python3 -m http.server 8833",
+    "photos": "node scripts/photos.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
+}
