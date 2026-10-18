@@ -117,7 +117,7 @@ ${alternates}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=DM+Sans:opsz,wght@9..40,400..700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400..700&display=swap">
   <link rel="stylesheet" href="${assets.css}">${page.preload ? `
   <link rel="preload" as="image" type="image/avif" imagesrcset="${PHOTO_W.map((w) => `/img/${page.preload}-${w}.avif ${w}w`).join(', ')}" imagesizes="100vw">` : ''}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">

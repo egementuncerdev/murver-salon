@@ -8,7 +8,7 @@ import { pathToFileURL } from 'node:url';
 
 const CHROME = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const tmp = await mkdtemp(join(tmpdir(), 'mv-img-'));
-const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=DM+Sans:wght@500;700&display=block">';
+const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@500;700&display=block">';
 const FLOWER = (c, w) => `<g fill="none" stroke="${c}" stroke-width="${w}">${[0, 72, 144, 216, 288].map((a) => `<ellipse cx="20" cy="11.5" rx="4.6" ry="7" transform="rotate(${a} 20 20)"/>`).join('')}</g><circle cx="20" cy="20" r="3" fill="${c}"/>`;
 const hero = pathToFileURL(resolve('public/img/hero-1200.webp')).href;
 
@@ -25,9 +25,9 @@ await shoot('og.png', `
   <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,18,24,.88) 0%,rgba(30,18,24,.6) 45%,rgba(30,18,24,.05) 80%)"></div>
   <div style="position:absolute;left:72px;top:64px;display:flex;align-items:center;gap:14px">
     <svg viewBox="0 0 40 40" style="width:46px">${FLOWER('#fff', 1.6)}</svg>
-    <span style="font-family:'Bodoni Moda';font-size:44px">Mürver</span>
+    <span style="font-family:'DM Serif Display';font-size:44px">Mürver</span>
   </div>
-  <div style="position:absolute;left:72px;top:190px;font-family:'Bodoni Moda';font-size:84px;line-height:1.02">
+  <div style="position:absolute;left:72px;top:190px;font-family:'DM Serif Display';font-size:84px;line-height:1.02">
     <div>Kendinize ayırdığınız</div><div style="font-style:italic">sakin bir saat.</div>
   </div>
   <div style="position:absolute;left:72px;bottom:112px;font-size:24px;color:rgba(255,255,255,.88)">Saç · Tırnak · Cilt bakımı · Makyaj, kaş ve kirpik · Online randevu</div>

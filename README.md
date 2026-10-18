@@ -43,7 +43,7 @@ Kurgusal bir güzellik salonu için **çok sayfalı, iki dilli (TR/EN)** web sit
 
 - **Bağımlılıksız build:** `build.mjs` (Node 18+), `src/` içeriğinden statik HTML üretir. CSS ve JS'e içerik özeti (hash) eklenir.
 - Bütün metinler ve fiyatlar tek dosyada: `src/content.mjs`.
-- Fontlar: Bodoni Moda + DM Sans (Google Fonts).
+- Fontlar: DM Serif Display + DM Sans (Google Fonts).
 - **Fotoğraflar:** [Unsplash](https://unsplash.com) (Unsplash License).
   - Fotoğrafçılar sitenin alt bilgisinde listelenir.
   - Fotoğraflardaki kişiler ekibin portresi olarak kullanılmaz; uzman kartları baş harflidir.
