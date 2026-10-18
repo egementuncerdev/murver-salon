@@ -309,10 +309,13 @@ export function home(t, assets) {
   const h = t.home;
   const page = { path: t.paths.home, alt: altFor('home'), title: h.title, desc: t.meta.siteDesc, bodyClass: 'page-home', preload: 'hero', overlay: true };
   const feat = featured.map(serviceById);
-  const galleryPicks = ['hair-color', 'nails-polish', 'skin-mask', 'interior-2', 'makeup-eye', 'hair-brush'];
+  const galleryPicks = ['nails-polish', 'skin-mask', 'hair-wash', 'lashes', 'hair-brush', 'products'];
+  const featPhotos = { balayage: 'hair-color', 'gel-hand': 'nails-pink', 'brow-lam': 'makeup-eye' };
+  const marquee = allServices.map((x) => x.name[t.lang]);
   const body = `
     <section class="hero">
-      <div class="hero__media">${pic(t, 'hero', { sizes: '100vw', eager: true })}</div>
+      <div class="hero__media">${pic(t, 'hero', { sizes: '(min-width: 1024px) 50vw, 100vw', eager: true })}</div>
+      <div class="hero__accent" aria-hidden="true">${pic(t, 'makeup-flatlay', { sizes: '18vw' })}</div>
       <div class="wrap hero__inner">
         <p class="eyebrow">${esc(h.eyebrow)}</p>
         <h1 class="display">${h.h1.map((l, i) => `<span${i ? ' class="display__em"' : ''}>${esc(l)}</span>`).join(' ')}</h1>
@@ -321,9 +324,11 @@ export function home(t, assets) {
           <a class="btn btn--light btn--lg" href="${t.paths.book}">${icon('calendar')}${esc(t.ui.book)}</a>
           <a class="btn btn--ghost-light btn--lg" href="${t.paths.services}">${esc(h.secondary)}</a>
         </div>
-        <p class="hero__status"><span class="status status--light" data-open-status></span></p>
+        <p class="hero__status"><span class="status status--light" data-open-status></span><span class="hero__addr">${icon('pin')}${esc(salon.address.street[t.lang])}, ${esc(salon.address.city)}</span></p>
       </div>
     </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker__track">${[0, 1].map(() => `<span>${marquee.map((m) => `${esc(m)}<i>✿</i>`).join('')}</span>`).join('')}</div></div>
 
     <section class="section" aria-labelledby="c-title">
       <div class="wrap">
@@ -334,27 +339,32 @@ export function home(t, assets) {
           </div>
           <a class="link-arrow" href="${t.paths.services}">${esc(t.ui.priceList)} ${icon('arrow')}</a>
         </div>
-        <ul class="cat-grid">${categories.map((c, i) => catCard(t, c, i)).join('')}
-        </ul>
+        <div class="cat-showcase" data-showcase>
+          <div class="cat-preview" aria-hidden="true">${categories.map((c, i) => `<div class="cat-preview__img${i ? '' : ' is-on'}" data-preview="${i}">${pic(t, c.photo, { sizes: '40vw' })}</div>`).join('')}</div>
+          <ul class="cat-grid">${categories.map((c, i) => catCard(t, c, i)).join('')}
+          </ul>
+        </div>
       </div>
     </section>
 
     <section class="section section--tint" aria-labelledby="f-title">
-      <div class="wrap feat">
-        <div class="feat__media" data-reveal>${pic(t, 'hair-color', { sizes: '(max-width: 900px) 92vw, 44vw' })}</div>
-        <div>
+      <div class="wrap">
+        <div class="section-head section-head--row">
           <h2 class="display-2" id="f-title">${esc(h.featTitle)}</h2>
-          <ul class="feat-list">${feat.map((s) => `
-            <li data-reveal>
-              <div>
-                <h3>${esc(s.name[t.lang])}</h3>
-                <p>${esc(s.desc[t.lang])} · ${esc(t.mins(s.min))}</p>
-              </div>
-              <strong>${esc(priceText(t, s))}</strong>
-              <a class="btn btn--outline btn--sm" href="${t.paths.book}?s=${s.id}">${esc(t.ui.book)}</a>
-            </li>`).join('')}
-          </ul>
+          <a class="link-arrow" href="${t.paths.book}">${esc(t.ui.book)} ${icon('arrow')}</a>
         </div>
+        <ul class="picks">${feat.map((s, i) => `
+          <li class="pick" data-reveal>
+            <div class="pick__media">${pic(t, featPhotos[s.id], { sizes: '(max-width: 900px) 92vw, 30vw' })}</div>
+            <span class="pick__num" aria-hidden="true">${pad(i + 1)}</span>
+            <h3>${esc(s.name[t.lang])}</h3>
+            <p>${esc(s.desc[t.lang])} · ${esc(t.mins(s.min))}</p>
+            <div class="pick__foot">
+              <strong>${esc(priceText(t, s))}</strong>
+              <a class="btn btn--outline btn--sm" href="${t.paths.book}?s=${s.id}">${esc(t.ui.book)}<span class="sr-only"> · ${esc(s.name[t.lang])}</span></a>
+            </div>
+          </li>`).join('')}
+        </ul>
       </div>
     </section>
 
@@ -362,7 +372,7 @@ export function home(t, assets) {
       <div class="wrap about">
         <div class="about__media" data-reveal>
           ${pic(t, 'interior-2', { sizes: '(max-width: 900px) 60vw, 26vw', cls: 'about__tall' })}
-          ${pic(t, 'nails-salon', { sizes: '(max-width: 900px) 60vw, 24vw', cls: 'about__small' })}
+          ${pic(t, 'skin-products', { sizes: '(max-width: 900px) 60vw, 24vw', cls: 'about__small' })}
         </div>
         <div data-reveal>
           <h2 class="display-2" id="a-title">${esc(h.aboutTitle)}</h2>

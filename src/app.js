@@ -127,6 +127,22 @@ if (revealEls.length) {
   }
 }
 
+/* ---------- Ana sayfa: kategori listesinde üzerine gelinen fotoğraf ---------- */
+const showcase = $('[data-showcase]');
+if (showcase) {
+  const imgs = $$('[data-preview]', showcase);
+  const cards = $$('.cat-card', showcase);
+  const activate = (i) => {
+    imgs.forEach((im, k) => im.classList.toggle('is-on', k === i));
+    cards.forEach((c, k) => c.classList.toggle('is-active', k === i));
+  };
+  cards.forEach((c, i) => {
+    c.addEventListener('mouseenter', () => activate(i));
+    c.addEventListener('focusin', () => activate(i));
+  });
+  activate(0);
+}
+
 /* ==========================================================================
    Galeri
    ========================================================================== */
