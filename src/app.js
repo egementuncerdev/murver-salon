@@ -458,6 +458,25 @@ function initBooking(form) {
     const ref = `MR-${Date.now().toString(36).slice(-5).toUpperCase()}`;
     buildIcs(ref);
     $('[data-done-text]', done).textContent = fill(msg.done, { ref, when: whenText() });
+    // Talep, salona hazır WhatsApp mesajı olarak açılır (site hiçbir şey kaydetmez)
+    const t = totals();
+    const p = form.elements.person.value;
+    const staff = (chosen.staff || '').split(' ').filter(Boolean).map((id) => msg.team[id].name).join(', ');
+    const note = (form.elements.note?.value || '').trim();
+    const w = msg.wa;
+    const lines = [
+      w.intro,
+      `• ${w.services}: ${t.list.map((x) => x.name).join(', ')}`,
+      `• ${w.person}: ${p === 'any' ? `${msg.any} (${staff})` : msg.team[p].name}`,
+      `• ${w.time}: ${whenText()}`,
+      `• ${w.name}: ${form.elements.name.value.trim()}`,
+      `• ${w.phone}: ${form.elements.phone.value.trim()}`,
+      ...(note ? [`• ${w.note}: ${note}`] : []),
+      `${w.ref}: ${ref}`
+    ];
+    const waUrl = `https://wa.me/${msg.waNumber}?text=${encodeURIComponent(lines.join('\n'))}`;
+    $('[data-wa-link]', done).href = waUrl;
+    window.open(waUrl, '_blank', 'noopener');
     form.hidden = true;
     $('.cart').hidden = true;
     done.hidden = false;

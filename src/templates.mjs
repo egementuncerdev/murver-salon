@@ -640,6 +640,8 @@ export function bookPage(t, assets) {
     noSlots: b.noSlots,
     any: b.any,
     icsTitle: b.icsTitle,
+    wa: b.wa,
+    waNumber: salon.bookingWhatsapp,
     from: t.from('{p}'),
     mins: { h: t.lang === 'tr' ? 'sa' : 'h', m: t.lang === 'tr' ? 'dk' : 'min' },
     services: Object.fromEntries(allServices.map((s) => [s.id, { name: s.name[t.lang], cat: s.cat, min: s.min, price: s.price, from: !!s.from }])),
@@ -720,6 +722,7 @@ export function bookPage(t, assets) {
               <div><dt>${esc(b.sum.contact)}</dt><dd data-sum="contact"></dd><button type="button" class="link-btn" data-goto="3">${esc(b.edit)}</button></div>
               <div class="summary__total"><dt>${esc(b.sum.total)}</dt><dd data-sum="total"></dd></div>
             </dl>
+            <p class="note-inline">${esc(b.sendNote)}</p>
             <p class="note-inline">${esc(b.demoNote)}</p>
           </fieldset>
 
@@ -747,7 +750,8 @@ export function bookPage(t, assets) {
           <h2 class="display-2">${esc(b.doneTitle)}</h2>
           <p class="lead" data-done-text></p>
           <div class="book-done__actions">
-            <button class="btn btn--dark" type="button" data-ics>${icon('calendar')}${esc(b.ics)}</button>
+            <a class="btn btn--dark" data-wa-link href="#" target="_blank" rel="noopener">${esc(b.waOpen)}</a>
+            <button class="btn btn--outline" type="button" data-ics>${icon('calendar')}${esc(b.ics)}</button>
             <button class="btn btn--outline" type="button" data-restart>${esc(b.again)}</button>
           </div>
           <p class="note-inline">${esc(b.demoNote)}</p>
